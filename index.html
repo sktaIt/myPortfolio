@@ -1,0 +1,50 @@
+<!doctype html>
+<!--
+  Fallback entry point for hosts that insist on index.html.
+
+  This file CANNOT include index.php. A .html file is served as static text —
+  the server never executes it — so PHP written in here would be sent to the
+  browser as visible source code rather than run.
+
+  What it does instead is hand off to index.php immediately. In practice it is
+  rarely used: the DirectoryIndex line in .htaccess makes index.php win at "/",
+  so this only matters if a host ignores that. Its other job is to overwrite the
+  placeholder index.html that free hosts drop into htdocs, which would otherwise
+  be served in front of the real site.
+
+  If you ever see this page for more than an instant, index.php is not being
+  executed — check that PHP is enabled on the host.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="refresh" content="0; url=index.php">
+<link rel="canonical" href="index.php">
+<title>Ahmed Rafat — Software Engineer (AI/ML)</title>
+<style>
+  html, body { height: 100%; margin: 0; }
+  body {
+    display: grid; place-items: center;
+    background: #0b0d12; color: #9aa3b2;
+    font: 500 15px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    text-align: center; padding: 1.5rem;
+  }
+  a { color: #6366f1; }
+  .mark {
+    display: grid; place-items: center;
+    width: 44px; height: 44px; margin: 0 auto 1rem;
+    border-radius: 12px; background: linear-gradient(135deg, #6366f1, #22d3ee);
+    color: #fff; font-weight: 700; letter-spacing: .02em;
+  }
+</style>
+<script>location.replace('index.php');</script>
+</head>
+<body>
+  <div>
+    <div class="mark" aria-hidden="true">AR</div>
+    <p>Loading the portfolio…</p>
+    <p><a href="index.php">Continue &rarr;</a></p>
+  </div>
+</body>
+</html>

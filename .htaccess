@@ -1,0 +1,33 @@
+# Root server config.
+#
+# The important line is DirectoryIndex. Hosts like InfinityFree ship a
+# placeholder index.html in htdocs, and if the server prefers .html over .php
+# that placeholder wins over this site. Listing index.php first fixes it at the
+# source, without needing a redirect.
+DirectoryIndex index.php index.html
+
+# Defence in depth. deploy.sh already keeps these out of the build, but if one
+# ever slips through it must not be downloadable — a stray .zip or .db in the
+# web root hands out the whole site content in one request.
+<FilesMatch "\.(db|db-wal|db-shm|sqlite|sqlite3|sql|zip|tar|gz|sh|md|log|ini|bak|heic|HEIC)$">
+  Require all denied
+</FilesMatch>
+
+# Directory listings would expose every certificate and picture as an index.
+Options -Indexes
+
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# Cache static assets. index.php is never cached — it renders from the database
+# and must reflect an edit immediately.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/png  "access plus 1 month"
+  ExpiresByType image/webp "access plus 1 month"
+  ExpiresByType text/css   "access plus 1 week"
+  ExpiresByType application/javascript "access plus 1 week"
+</IfModule>

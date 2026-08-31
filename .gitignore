@@ -1,0 +1,20 @@
+# The dev marker also holds the admin's token secret. Never commit it, never
+# deploy it: its absence is one of the two things that disables the admin.
+data/.dev
+
+# SQLite sidecars — transient. data/portfolio.db itself IS committed on purpose:
+# it is your content.
+*.db-wal
+*.db-shm
+
+dist/
+.DS_Store
+
+# Backup archives contain the whole database. Keep them out of the repo and,
+# via deploy.sh, out of the web root.
+*.zip
+backups/
+
+# Camera originals. Kept locally so photos can be re-cropped; never deployed.
+*.HEIC
+*.heic

@@ -1,0 +1,9 @@
+# Nothing in this folder is ever fetched over HTTP. Without this, anyone could
+# download portfolio.db — your entire site content — from yoursite.com/data/.
+Require all denied
+
+# Apache 2.2 fallback, harmless on 2.4
+<IfModule !mod_authz_core.c>
+  Order allow,deny
+  Deny from all
+</IfModule>

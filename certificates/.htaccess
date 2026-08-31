@@ -1,0 +1,9 @@
+# Uploads are served from here, so nothing in this folder may ever execute.
+# Denying the files outright rather than using php_flag engine off, which only
+# exists under mod_php and throws a 500 on the PHP-FPM setups most hosts run.
+<FilesMatch "\.(php|phar|phtml|php[0-9]?|cgi|pl|py|sh|htaccess)$">
+  Require all denied
+</FilesMatch>
+
+Options -ExecCGI -Indexes
+AddType text/plain .php .phtml .phar

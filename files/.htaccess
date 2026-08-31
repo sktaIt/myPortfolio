@@ -1,0 +1,8 @@
+# Publicly readable (this is where the CV download lives), but nothing here may
+# ever execute.
+<FilesMatch "\.(php|phar|phtml|php[0-9]?|cgi|pl|py|sh|htaccess)$">
+  Require all denied
+</FilesMatch>
+
+Options -ExecCGI -Indexes
+AddType text/plain .php .phtml .phar
